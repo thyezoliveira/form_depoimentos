@@ -2,13 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Seus estilos manuais abaixo */
+/*Reset basico*/
+*{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body{
   font-family: monospace;
 }
 .quadro{
   background-color: #eee;
   padding: 8px;
+  max-width: 400px;
+
+  h2{
+    font-size: 20pt;
+  }
 }
 .aguarde{
   display:flex;
@@ -25,15 +39,17 @@ body{
 }
 
 form{
+  font-size: 12pt;
   display: flex;
   flex-direction: column;
   width: 100%;
 
   div{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    margin-top: 4px;
+    margin-bottom: 4px;
     width: 100%;
-    margin: 4px;
 
     label{
       font-weight: bold;
@@ -43,10 +59,18 @@ form{
       outline: none;
       border: none;
       width: 100%;
-      padding: 4px;
-      margin: 4px;
+      padding: 8px;
     }
+
   }
+  button[type=submit]{
+    height: 50px;
+  }
+}
+
+p.aviso{
+  color: gray;
+  font-size: 8pt;
 }
 
 @keyframes loading {

@@ -106,13 +106,13 @@ function App() {
           ) : (
             <form onSubmit={handleSubmit}>
               <div>
-                <label>Nome</label>
+                <label>Nome / Empresa</label>
                 <input type="text" value={formData.nome} onChange={e => setFormData({...formData, nome: e.target.value})} required placeholder="Como podemos te chamar?" />
               </div>
-              <div>
-                <label>Depoimento</label>
-                <textarea value={formData.depoimento} onChange={e => setFormData({...formData, depoimento: e.target.value})} required placeholder="O que você achou de nós?" />
-              </div>
+                <div>
+                  <label>Ramo</label>
+                  <input type="text" value={formData.setor} onChange={e => setFormData({...formData, setor: e.target.value})} required placeholder="Ex: Vendas" />
+                </div>
               <div>
                 <div>
                   <label>Avaliação</label>
@@ -120,10 +120,10 @@ function App() {
                     {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n} {n === 1 ? 'Estrela' : 'Estrelas'}</option>)}
                   </select>
                 </div>
-                <div>
-                  <label>Setor</label>
-                  <input type="text" value={formData.setor} onChange={e => setFormData({...formData, setor: e.target.value})} required placeholder="Ex: Vendas" />
-                </div>
+              </div>
+              <div>
+                <label>Depoimento</label>
+                <textarea value={formData.depoimento} onChange={e => setFormData({...formData, depoimento: e.target.value})} required placeholder="O que você achou do trabalho realizado?" />
               </div>
               <button type="submit">
                 Enviar Depoimento
@@ -131,7 +131,7 @@ function App() {
             </form>
           )}
 
-          <p>
+          <p className="aviso">
             Ao enviar este formulário, você concorda que o preenchimento está em total conformidade com o nosso contrato de uso e privacidade.
           </p>
         </>
