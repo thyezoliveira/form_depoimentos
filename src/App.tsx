@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import './App.css'
 
 const API_URL = "https://api-depoimentos.onrender.com";
 
-async function acordarEEnviarDados(dados: any) {
+async function acordarEEnviarDados(dados: unknown) {
   let acordou = false;
   let tentativas = 0;
   const maxTentativas = 12; // 12 * 5 segundos = 60 segundos de espera máxima
@@ -81,56 +82,60 @@ function App() {
   }
 
   return (
-    <div>
-      <div>
-        <h2 className="text-gray-500">Deixe aqui seu depoimento</h2>
-        <p>Compartilhe sua experiência conosco.</p>
-      </div>
-
-      {loading ? (
-        <div>
-          <div></div> {/* Spinner */}
-          <p>
-            Aguarde<span></span>
-          </p>
+    <div className="quadro">
+      {status === 'success' || status === 'error' ? (
+        <div className="status-message">
+          {status === 'success'
+            ? 'Depoimento registrado com sucesso! Obrigado.'
+            : 'Ops, algo deu errado. Tente novamente mais tarde.'}
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Nome</label>
-            <input type="text" value={formData.nome} onChange={e => setFormData({...formData, nome: e.target.value})} required placeholder="Como podemos te chamar?" />
+        <>
+          <div className="cabecalho">
+            <h2>Deixe aqui seu depoimento</h2>
+            <p>Compartilhe sua experiência conosco.</p>
           </div>
-          <div>
-            <label>Depoimento</label>
-            <textarea value={formData.depoimento} onChange={e => setFormData({...formData, depoimento: e.target.value})} required placeholder="O que você achou de nós?" />
-          </div>
-          <div>
-            <div>
-              <label>Avaliação</label>
-              <select value={formData.avaliacao} onChange={e => setFormData({...formData, avaliacao: parseInt(e.target.value)})}>
-                {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n} {n === 1 ? 'Estrela' : 'Estrelas'}</option>)}
-              </select>
-            </div>
-            <div>
-              <label>Setor</label>
-              <input type="text" value={formData.setor} onChange={e => setFormData({...formData, setor: e.target.value})} required placeholder="Ex: Vendas" />
-            </div>
-          </div>
-          <button type="submit">
-            Enviar Depoimento
-          </button>
-        </form>
-      )}
 
-      {(status === 'success' || status === 'error') && (
-        <div>
-          {status === 'success' ? 'Depoimento registrado com sucesso! Obrigado.' : 'Ops, algo deu errado. Tente novamente mais tarde.'}
-        </div>
-      )}
+          {loading ? (
+            <div className="loading-state">
+              <p className="aguarde">
+                Aguarde, processando depoimento...
+                <div className="quadrado"></div>
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label>Nome</label>
+                <input type="text" value={formData.nome} onChange={e => setFormData({...formData, nome: e.target.value})} required placeholder="Como podemos te chamar?" />
+              </div>
+              <div>
+                <label>Depoimento</label>
+                <textarea value={formData.depoimento} onChange={e => setFormData({...formData, depoimento: e.target.value})} required placeholder="O que você achou de nós?" />
+              </div>
+              <div>
+                <div>
+                  <label>Avaliação</label>
+                  <select value={formData.avaliacao} onChange={e => setFormData({...formData, avaliacao: parseInt(e.target.value)})}>
+                    {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n} {n === 1 ? 'Estrela' : 'Estrelas'}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label>Setor</label>
+                  <input type="text" value={formData.setor} onChange={e => setFormData({...formData, setor: e.target.value})} required placeholder="Ex: Vendas" />
+                </div>
+              </div>
+              <button type="submit">
+                Enviar Depoimento
+              </button>
+            </form>
+          )}
 
-      <p>
-        Ao enviar este formulário, você concorda que o preenchimento está em total conformidade com o nosso contrato de uso e privacidade.
-      </p>
+          <p>
+            Ao enviar este formulário, você concorda que o preenchimento está em total conformidade com o nosso contrato de uso e privacidade.
+          </p>
+        </>
+      )}
     </div>
   )
 }
