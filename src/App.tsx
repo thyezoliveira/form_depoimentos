@@ -83,7 +83,7 @@ function App() {
   return (
     <div>
       <div>
-        <h2>Deixe aqui seu depoimento</h2>
+        <h2 className="text-gray-500">Deixe aqui seu depoimento</h2>
         <p>Compartilhe sua experiência conosco.</p>
       </div>
 
@@ -127,7 +127,7 @@ function App() {
           {status === 'success' ? 'Depoimento registrado com sucesso! Obrigado.' : 'Ops, algo deu errado. Tente novamente mais tarde.'}
         </div>
       )}
-      
+
       <p>
         Ao enviar este formulário, você concorda que o preenchimento está em total conformidade com o nosso contrato de uso e privacidade.
       </p>
