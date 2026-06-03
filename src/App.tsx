@@ -86,7 +86,8 @@ function App() {
       {status === 'success' || status === 'error' ? (
         <div className="status-message">
           {status === 'success'
-            ? 'Depoimento registrado com sucesso! Obrigado.'
+            ? <div className="message">
+              <p>Obrigado pela paciencia, depoimento registrado com sucesso!</p> <p>Agradecemos também pela parceria.</p></div>
             : 'Ops, algo deu errado. Tente novamente mais tarde.'}
         </div>
       ) : (

@@ -16,12 +16,24 @@ body{
   font-family: monospace;
 }
 .quadro{
-  background-color: #eee;
+  /*background-color: #eee;*/
   padding: 8px;
   max-width: 400px;
+  margin-top: 8px;
 
   h2{
-    font-size: 20pt;
+    font-size: 16pt;
+    letter-spacing: 0.08px;
+  }
+
+  div.status-message > div.message {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+      margin: 8px;
+    }
   }
 }
 .aguarde{
@@ -52,19 +64,39 @@ form{
     width: 100%;
 
     label{
-      font-weight: bold;
+      font-weight: 200;
     }
+
     input, textarea, select{
       background-color: white;
       outline: none;
-      border: none;
+      border: solid 1px #ddd;
       width: 100%;
       padding: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover{
+        border: solid 1px #888;
+      }
+    }
+
+    textarea{
+      height: 100px;
+      resize: none;
     }
 
   }
   button[type=submit]{
     height: 50px;
+    background-color: #ccc;
+    margin-top: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+
+    &:hover{
+      border: solid 1px #888;
+    }
   }
 }
 
